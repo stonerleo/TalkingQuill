@@ -106,6 +106,12 @@ export const NotesListScreen = () => {
         </View>
       )}
 
+      {error && !isRecording && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorTextItem}>{error}</Text>
+        </View>
+      )}
+
       <View style={styles.fabContainer}>
         <RecordButton isRecording={isRecording} onPress={handleRecordPress} />
       </View>
@@ -182,6 +188,22 @@ const styles = StyleSheet.create({
   liveTranscriptText: {
     color: theme.colors.text,
     fontStyle: 'italic',
+  },
+  errorContainer: {
+    position: 'absolute',
+    bottom: 100,
+    left: theme.spacing.md,
+    right: theme.spacing.md,
+    backgroundColor: theme.colors.surface,
+    padding: theme.spacing.md,
+    borderRadius: theme.borderRadii.md,
+    borderColor: theme.colors.error,
+    borderWidth: 1,
+  },
+  errorTextItem: {
+    color: theme.colors.error,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   fabContainer: {
     position: 'absolute',

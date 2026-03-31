@@ -1,8 +1,9 @@
 {
-  "name": "TalkingQuill",
+  "name": "talkingquill",
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "patch-package",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
@@ -11,11 +12,12 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "@react-native-async-storage/async-storage": "^3.0.2",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-voice/voice": "^3.2.4",
     "@react-native/new-app-screen": "0.84.1",
     "@react-navigation/native": "^7.2.2",
     "@react-navigation/native-stack": "^7.14.10",
+    "patch-package": "^8.0.1",
     "react": "19.2.3",
     "react-native": "0.84.1",
     "react-native-safe-area-context": "^5.7.0",

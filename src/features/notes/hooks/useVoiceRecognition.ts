@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { PermissionsAndroid, Platform } from 'react-native';
 import Voice, {
   SpeechResultsEvent,
   SpeechErrorEvent,
@@ -57,6 +58,15 @@ export const useVoiceRecognition = () => {
 
   const startRecording = async () => {
     try {
+      if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        );
+        if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+          setState(prevState => ({ ...prevState, error: 'Microphone permission denied' }));
+          return;
+        }
+      }
       resetState();
       await Voice.start('en-US');
     } catch (e: any) {
